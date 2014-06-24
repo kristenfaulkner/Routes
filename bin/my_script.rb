@@ -1,18 +1,18 @@
 require 'addressable/uri'
 require 'rest-client'
 
-def create_user
+def update_user
   url = Addressable::URI.new(
     scheme: 'http',
     host: 'localhost',
     port: 3000,
-    path: '/users.json'
+    path: '/users/1/contacts/2.json'
   ).to_s
 
-  puts RestClient.post(
+  puts RestClient.patch(
     url,
-    { :user => { :name => "Gizmo2"} }
+    { :contact => {name: 'c3'} }
   )
 end
 
-create_user
+update_user
