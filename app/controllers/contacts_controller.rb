@@ -1,7 +1,8 @@
 class ContactsController < ApplicationController
   
+  
   def create
-    contact = Contact.new(params[:contact].require(:user_id).permit(:name, :email))
+    contact = Contact.new(params[:contact].permit(:name, :email, :user_id))
     if contact.save
       render :json => contact
     else
@@ -20,7 +21,7 @@ class ContactsController < ApplicationController
   #I work (sort of)
   def index
     #contacts = Contact.contacts_for_user_id(params[:user_id])
-    contacts = Contact.find(params[:user_id])
+    contacts = Contact.where("user_id = ?", params[:user_id])
     render :json => contacts
   end
 
@@ -31,6 +32,7 @@ class ContactsController < ApplicationController
     render :json => contact
   end
   
+  #I work
   def update
     contact = Contact.find(params[:id])
     if contact.update(contact_params)

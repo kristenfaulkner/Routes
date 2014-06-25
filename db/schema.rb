@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140624210940) do
+ActiveRecord::Schema.define(version: 20140625003424) do
+
+  create_table "comments", force: true do |t|
+    t.string   "body",         null: false
+    t.integer  "commenter_id", null: false
+    t.integer  "receiver_id",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contact_shares", force: true do |t|
     t.integer  "contact_id", null: false

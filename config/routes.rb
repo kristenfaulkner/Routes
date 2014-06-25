@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :contacts, except: [:edit, :new] 
     resources :contact_shares, except: [:edit, :new]
     resources :shared_contacts, :only => :index
+    resources :comments
   end
 
 
